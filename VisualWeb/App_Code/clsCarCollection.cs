@@ -15,7 +15,7 @@ public class clsCarCollection
         //
     }
 
-    public Boolean Delete(Int32 CarNo)
+    public Boolean Delete(Int32 CarID)
     {
         //return value for func
         return true;

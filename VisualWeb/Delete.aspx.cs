@@ -23,8 +23,8 @@ public partial class Delete : System.Web.UI.Page
         //instance of CarCollection class
         clsCarCollection CarCollection = new clsCarCollection();
         //pass data from text box to var
-        Int32 CarNo = Convert.ToInt32(txtDelete.Text);
+        Int32 CarID = Convert.ToInt32(txtDelete.Text);
         //invoke the delete method
-        CarCollection.Delete(CarNo);
+        CarCollection.Delete(CarID);
     }
 }
