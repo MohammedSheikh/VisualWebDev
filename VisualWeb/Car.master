@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Car.master.cs" Inherits="Car" %>
+
+<!DOCTYPE html>
+
+<html>
+    <head id="Head1" runat="server">
+        <title>Car Site</title>
+        <link href="Car.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <form id="form1" runat="server">
+ 
+             <header>
+                 Car Site</header>
+ 
+            <article>
+                Cars To See
+                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </article>
+  
+            <footer>
+                Car Site 2017
+            </footer>
+        </form>
+    </body>
+</html>
+

@@ -1,0 +1,37 @@
+﻿body
+{
+    background-color: #6699FF;
+}
+
+header
+{
+    background-color: #600;
+    height: 10%;
+    position: fixed;
+    width: 100%;
+    top: 0%;
+    left: 0%;
+    font-size:35px;
+    color:white;
+}
+
+footer
+{
+    background-color: #600;
+    height: 10%;
+    position: fixed;
+    width: 100%;
+    top: 90%;
+    left: 0%;
+    color:white;
+}
+
+article
+{
+    background-color: #CC66FF;
+    position: fixed;
+    width: 80%;
+    top: 10%;
+    left: 20%;
+    color:white;
+}
