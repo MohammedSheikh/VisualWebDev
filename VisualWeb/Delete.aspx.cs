@@ -20,7 +20,11 @@ public partial class Delete : System.Web.UI.Page
 
     protected void btnYes_Click(object sender, EventArgs e)
     {
+        //instance of CarCollection class
+        clsCarCollection CarCollection = new clsCarCollection();
+        //pass data from text box to var
         Int32 CarNo = Convert.ToInt32(txtDelete.Text);
-        lblMessage.Text = "You deleted Car Number: " + CarNo;
+        //invoke the delete method
+        CarCollection.Delete(CarNo);
     }
 }
