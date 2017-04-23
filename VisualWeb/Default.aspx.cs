@@ -23,4 +23,10 @@ public partial class _Default : System.Web.UI.Page
         //go to 'Add' page
         Response.Redirect("ACar.aspx");
     }
+
+    protected void btnDisplay_Click(object sender, EventArgs e)
+    {
+        clsCarCollection Car = new clsCarCollection();
+        Car.CarList();
+    }
 }

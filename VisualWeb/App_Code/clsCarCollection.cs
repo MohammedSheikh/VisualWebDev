@@ -33,8 +33,32 @@ public class clsCarCollection
         {
             //if problem happened return error msg
             return false;
-        }
+        }  
+    }
 
-      
+    public void CarList()
+    {
+        //declare a var for primary key value
+        Int32 CarID;
+        string Manufacturer;
+        string Model;
+        string Colour;
+        Int32 NoOfDoors;
+        DateTime RegistrationDate;
+        Boolean FourWheelDrive;
+        //instance of db connection
+        clsDataConnection DB1 = new clsDataConnection();
+        //pass parameter data to data layer (in sproc_tblCar_FilterByColour)
+        DB1.AddParameter("@Colour","");
+        //execute the sproc
+        DB1.Execute("sproc_tblCar_FilterByColour");
+        //copy data form table to RAM variable
+        CarID = Convert.ToInt32(DB1.DataTable.Rows[0]["CarID"]);
+        Manufacturer = Convert.ToString(DB1.DataTable.Rows[0]["Manufacturer"]);
+        Model = Convert.ToString(DB1.DataTable.Rows[0]["Model"]);
+        Colour = Convert.ToString(DB1.DataTable.Rows[0]["Colour"]);
+        NoOfDoors = Convert.ToInt32(DB1.DataTable.Rows[0]["NoOfDoors"]);
+        RegistrationDate = Convert.ToDateTime(DB1.DataTable.Rows[0]["RegistrationDate"]);
+        FourWheelDrive = Convert.ToBoolean(DB1.DataTable.Rows[0]["FourWheelDrive"]);
     }
 }
