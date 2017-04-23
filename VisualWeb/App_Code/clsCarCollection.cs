@@ -46,19 +46,31 @@ public class clsCarCollection
         Int32 NoOfDoors;
         DateTime RegistrationDate;
         Boolean FourWheelDrive;
+        //var to store record count
+        Int32 RecordCount;
+        //var to store index (index tells loop which record it is at)
+        Int32 Index = 0;
         //instance of db connection
         clsDataConnection DB1 = new clsDataConnection();
         //pass parameter data to data layer (in sproc_tblCar_FilterByColour)
         DB1.AddParameter("@Colour","");
         //execute the sproc
         DB1.Execute("sproc_tblCar_FilterByColour");
-        //copy data form table to RAM variable
-        CarID = Convert.ToInt32(DB1.DataTable.Rows[0]["CarID"]);
-        Manufacturer = Convert.ToString(DB1.DataTable.Rows[0]["Manufacturer"]);
-        Model = Convert.ToString(DB1.DataTable.Rows[0]["Model"]);
-        Colour = Convert.ToString(DB1.DataTable.Rows[0]["Colour"]);
-        NoOfDoors = Convert.ToInt32(DB1.DataTable.Rows[0]["NoOfDoors"]);
-        RegistrationDate = Convert.ToDateTime(DB1.DataTable.Rows[0]["RegistrationDate"]);
-        FourWheelDrive = Convert.ToBoolean(DB1.DataTable.Rows[0]["FourWheelDrive"]);
+        //get the count of records
+        RecordCount = DB1.Count;
+        //while there are still records to process
+        while (Index < RecordCount)
+        {
+            //copy data form table to RAM variable
+            CarID = Convert.ToInt32(DB1.DataTable.Rows[Index]["CarID"]);
+            Manufacturer = Convert.ToString(DB1.DataTable.Rows[Index]["Manufacturer"]);
+            Model = Convert.ToString(DB1.DataTable.Rows[Index]["Model"]);
+            Colour = Convert.ToString(DB1.DataTable.Rows[Index]["Colour"]);
+            NoOfDoors = Convert.ToInt32(DB1.DataTable.Rows[Index]["NoOfDoors"]);
+            RegistrationDate = Convert.ToDateTime(DB1.DataTable.Rows[Index]["RegistrationDate"]);
+            FourWheelDrive = Convert.ToBoolean(DB1.DataTable.Rows[Index]["FourWheelDrive"]);
+            //increase index each time the loop arrives here
+            Index++;
+        }
     }
 }
