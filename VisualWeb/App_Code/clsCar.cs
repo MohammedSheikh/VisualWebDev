@@ -15,6 +15,7 @@ public class clsCar
         //
     }
 
+    //private variables that connect to their related public properties
     private Int32 carID;
 
     private string manufacturer;
@@ -29,12 +30,15 @@ public class clsCar
 
     private Boolean fourWheelDrive;
 
+    //public property that connects to its related private variable
     public Int32 CarID
     {
+        //getter to get data from this propertry (read)
         get
         {
             return carID;
         }
+        //setter to insert data (write)
         set
         {
             carID = value;

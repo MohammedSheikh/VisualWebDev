@@ -36,16 +36,20 @@ public class clsCarCollection
         }  
     }
 
+    //function to create list of record(s)
     public void CarList()
     {
+        //middle layer array list of single car page (clsCar)
+        List<clsCar> list = new List<clsCar>();
+        
         //declare a var for primary key value
-        Int32 CarID;
-        string Manufacturer;
-        string Model;
-        string Colour;
-        Int32 NoOfDoors;
-        DateTime RegistrationDate;
-        Boolean FourWheelDrive;
+        //Int32 CarID;
+        //string Manufacturer;
+        //string Model;
+        //string Colour;
+        //Int32 NoOfDoors;
+        //DateTime RegistrationDate;
+        //Boolean FourWheelDrive;
         //var to store record count
         Int32 RecordCount;
         //var to store index (index tells loop which record it is at)
@@ -61,14 +65,18 @@ public class clsCarCollection
         //while there are still records to process
         while (Index < RecordCount)
         {
+            //blank car page 
+            clsCar CarPage = new clsCar();
             //copy data form table to RAM variable
-            CarID = Convert.ToInt32(DB1.DataTable.Rows[Index]["CarID"]);
-            Manufacturer = Convert.ToString(DB1.DataTable.Rows[Index]["Manufacturer"]);
-            Model = Convert.ToString(DB1.DataTable.Rows[Index]["Model"]);
-            Colour = Convert.ToString(DB1.DataTable.Rows[Index]["Colour"]);
-            NoOfDoors = Convert.ToInt32(DB1.DataTable.Rows[Index]["NoOfDoors"]);
-            RegistrationDate = Convert.ToDateTime(DB1.DataTable.Rows[Index]["RegistrationDate"]);
-            FourWheelDrive = Convert.ToBoolean(DB1.DataTable.Rows[Index]["FourWheelDrive"]);
+            CarPage.CarID = Convert.ToInt32(DB1.DataTable.Rows[Index]["CarID"]);
+            CarPage.Manufacturer = Convert.ToString(DB1.DataTable.Rows[Index]["Manufacturer"]);
+            CarPage.Model = Convert.ToString(DB1.DataTable.Rows[Index]["Model"]);
+            CarPage.Colour = Convert.ToString(DB1.DataTable.Rows[Index]["Colour"]);
+            CarPage.NoOfDoors = Convert.ToInt32(DB1.DataTable.Rows[Index]["NoOfDoors"]);
+            CarPage.RegistrationDate = Convert.ToDateTime(DB1.DataTable.Rows[Index]["RegistrationDate"]);
+            CarPage.FourWheelDrive = Convert.ToBoolean(DB1.DataTable.Rows[Index]["FourWheelDrive"]);
+            //add the blank car page record to the array list
+            list.Add(CarPage);
             //increase index each time the loop arrives here
             Index++;
         }
