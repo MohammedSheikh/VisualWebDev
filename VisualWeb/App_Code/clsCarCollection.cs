@@ -37,48 +37,63 @@ public class clsCarCollection
     }
 
     //function to create list of record(s)
-    public void CarList()
+    public List<clsCar> CarList
     {
-        //middle layer array list of single car page (clsCar)
-        List<clsCar> list = new List<clsCar>();
-        
-        //declare a var for primary key value
-        //Int32 CarID;
-        //string Manufacturer;
-        //string Model;
-        //string Colour;
-        //Int32 NoOfDoors;
-        //DateTime RegistrationDate;
-        //Boolean FourWheelDrive;
-        //var to store record count
-        Int32 RecordCount;
-        //var to store index (index tells loop which record it is at)
-        Int32 Index = 0;
-        //instance of db connection
-        clsDataConnection DB1 = new clsDataConnection();
-        //pass parameter data to data layer (in sproc_tblCar_FilterByColour)
-        DB1.AddParameter("@Colour","");
-        //execute the sproc
-        DB1.Execute("sproc_tblCar_FilterByColour");
-        //get the count of records
-        RecordCount = DB1.Count;
-        //while there are still records to process
-        while (Index < RecordCount)
+        get
         {
-            //blank car page 
-            clsCar CarPage = new clsCar();
-            //copy data form table to RAM variable
-            CarPage.CarID = Convert.ToInt32(DB1.DataTable.Rows[Index]["CarID"]);
-            CarPage.Manufacturer = Convert.ToString(DB1.DataTable.Rows[Index]["Manufacturer"]);
-            CarPage.Model = Convert.ToString(DB1.DataTable.Rows[Index]["Model"]);
-            CarPage.Colour = Convert.ToString(DB1.DataTable.Rows[Index]["Colour"]);
-            CarPage.NoOfDoors = Convert.ToInt32(DB1.DataTable.Rows[Index]["NoOfDoors"]);
-            CarPage.RegistrationDate = Convert.ToDateTime(DB1.DataTable.Rows[Index]["RegistrationDate"]);
-            CarPage.FourWheelDrive = Convert.ToBoolean(DB1.DataTable.Rows[Index]["FourWheelDrive"]);
-            //add the blank car page record to the array list
-            list.Add(CarPage);
-            //increase index each time the loop arrives here
-            Index++;
+            //middle layer array list of single car page (clsCar)
+            List<clsCar> list = new List<clsCar>();
+
+            //declare a var for primary key value
+            //Int32 CarID;
+            //string Manufacturer;
+            //string Model;
+            //string Colour;
+            //Int32 NoOfDoors;
+            //DateTime RegistrationDate;
+            //Boolean FourWheelDrive;
+            //var to store record count
+            Int32 RecordCount;
+            //var to store index (index tells loop which record it is at)
+            Int32 Index = 0;
+            //instance of db connection
+            clsDataConnection DB1 = new clsDataConnection();
+            //pass parameter data to data layer (in sproc_tblCar_FilterByColour)
+            DB1.AddParameter("@Colour", "");
+            //execute the sproc
+            DB1.Execute("sproc_tblCar_FilterByColour");
+            //get the count of records
+            RecordCount = DB1.Count;
+            //while there are still records to process
+            while (Index < RecordCount)
+            {
+                //blank car page 
+                clsCar CarPage = new clsCar();
+                //copy data form table to RAM variable
+                CarPage.CarID = Convert.ToInt32(DB1.DataTable.Rows[Index]["CarID"]);
+                CarPage.Manufacturer = Convert.ToString(DB1.DataTable.Rows[Index]["Manufacturer"]);
+                CarPage.Model = Convert.ToString(DB1.DataTable.Rows[Index]["Model"]);
+                CarPage.Colour = Convert.ToString(DB1.DataTable.Rows[Index]["Colour"]);
+                CarPage.NoOfDoors = Convert.ToInt32(DB1.DataTable.Rows[Index]["NoOfDoors"]);
+                CarPage.RegistrationDate = Convert.ToDateTime(DB1.DataTable.Rows[Index]["RegistrationDate"]);
+                CarPage.FourWheelDrive = Convert.ToBoolean(DB1.DataTable.Rows[Index]["FourWheelDrive"]);
+                //add the blank car page record to the array list
+                list.Add(CarPage);
+                //increase index each time the loop arrives here
+                Index++;
+            }
+            return list;
+        }
+    }
+    //public read only property to expose record count (read only thats y there is no setter)
+    public Int32 Count
+    {
+        get
+        {
+            clsDataConnection DB1 = new clsDataConnection();
+            DB1.AddParameter("@Colour","");
+            DB1.Execute("sproc_tblCar_FilterByColour");
+            return DB1.Count;
         }
     }
 }
