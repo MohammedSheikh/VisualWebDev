@@ -3,6 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <br />
     <br />
+    Car ID&nbsp;&nbsp;
+    <asp:TextBox ID="txtCarID" runat="server"></asp:TextBox>
+    <br />
+    <br />
     Manufacturer&nbsp;
     <asp:TextBox ID="txtManufacturer" runat="server"></asp:TextBox>
     <br />
