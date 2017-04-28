@@ -17,4 +17,25 @@ public partial class ACar : System.Web.UI.Page
         //Go back to homepage
         Response.Redirect("Default.aspx");
     }
+
+    protected void btnOK_Click(object sender, EventArgs e)
+    {
+        clsCar  Car1 = new clsCar();
+        string ErrorMsg;
+        ErrorMsg =  Car1.CarValid(txtCarID.Text,
+                                  txtManufacturer.Text,
+                                  txtModel.Text,
+                                  txtColor.Text,
+                                  txtRegistrationDate.Text);
+
+        if (ErrorMsg == "")
+        {
+            //do somethin-insert or update
+            Response.Redirect("Default.aspx");
+        }
+        else
+        {
+            lblError.Text = ErrorMsg;
+        }
+    }
 }

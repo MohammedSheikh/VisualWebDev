@@ -116,4 +116,47 @@ public class clsCar
             fourWheelDrive = value;
         }
     }
+
+    public string CarValid(string CarID,
+                           string Manufacturer,
+                           string Model,
+                           string Colour,
+                           string RegistrationDate)
+    {
+        string message;
+        message = "";
+
+        if (Manufacturer.Length < 1 | Manufacturer.Length > 50)
+        {
+            message = message + " , manufacturer must be between 1 and 50 chars";
+        }
+        if(Model.Length < 1 | Model.Length > 50)
+        {
+            message = message + " , model must be between 1 and 50 chars";
+        }
+        if (Colour.Length < 1 | Colour.Length > 50)
+        {
+            message = message + " , colour must be between 1 and 20 chars";
+        }
+
+        try
+        {
+            //assign date to temproary var
+            DateTime temp = Convert.ToDateTime(RegistrationDate);
+        }
+        catch
+        {
+            message = "dates not valid";
+        }
+
+        if(message == "")
+        {
+            //return blank string if no erroes
+            return "";
+        }
+        else
+        {
+            return " there were erros: " + message ;
+        }  
+    }
 }
