@@ -47,6 +47,19 @@ public partial class ACar : System.Web.UI.Page
                 //add the new record after all data has been copied
                 CarCollection.Add(Car1);
             }
+            //else (if pk value is not -1, it means its existing, therefore we update)
+            else
+            {
+                //copy data from txt boxes to vars
+                Car1.CarID = Convert.ToInt32(txtCarID.Text);
+                Car1.Manufacturer = txtManufacturer.Text;
+                Car1.Model = txtModel.Text;
+                Car1.Colour = txtColor.Text;
+                Car1.RegistrationDate = Convert.ToDateTime(txtRegistrationDate.Text);
+
+                //update the record
+                CarCollection.Update(Car1);
+            }
 
 
             //do somethin-insert or update

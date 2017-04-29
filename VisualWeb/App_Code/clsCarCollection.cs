@@ -30,6 +30,22 @@ public class clsCarCollection
         return DB.Execute("sproc_tblCar_Insert");
     }
 
+    public void Update(clsCar NewCar1)
+    {
+        clsDataConnection DB1 = new clsDataConnection();
+
+        //in this update method we also need to pass carId param so we know whcih address to update
+        DB1.AddParameter("@CarID", NewCar1.CarID);
+        DB1.AddParameter("@Manufacturer", NewCar1.Manufacturer);
+        DB1.AddParameter("@Model", NewCar1.Model);
+        DB1.AddParameter("@Colour", NewCar1.Colour);
+        DB1.AddParameter("@NoOfDoors", NewCar1.NoOfDoors);
+        DB1.AddParameter("@RegistrationDate", NewCar1.RegistrationDate);
+        DB1.AddParameter("@FourWheelDrive", NewCar1.FourWheelDrive);
+
+        DB1.Execute("sproc_tblCar_Update");
+    }
+
     public Boolean Delete(Int32 CarID)
     {
         //try to delete record
