@@ -15,6 +15,21 @@ public class clsCarCollection
         //
     }
 
+    //insert data method, which accepts one param of object type clsCar
+    //once record is added it returns primary key of new record
+    public Int32 Add(clsCar NewCar)
+    {
+        clsDataConnection DB = new clsDataConnection();
+        DB.AddParameter("@Manufacturer", NewCar.Manufacturer);
+        DB.AddParameter("@Model", NewCar.Model);
+        DB.AddParameter("@Colour", NewCar.Colour);
+        DB.AddParameter("@NoOfDoors", NewCar.NoOfDoors);
+        DB.AddParameter("@RegistrationDate", NewCar.RegistrationDate);
+        DB.AddParameter("@FourWheelDrive", NewCar.FourWheelDrive);
+        //execute sproc which contains primary key value of the new record 
+        return DB.Execute("sproc_tblCar_Insert");
+    }
+
     public Boolean Delete(Int32 CarID)
     {
         //try to delete record
