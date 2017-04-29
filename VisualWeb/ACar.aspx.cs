@@ -9,7 +9,9 @@ public partial class ACar : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //read the data from the query string that we passed from Default.aspx and copy to CarID txtbox
+        txtCarID.Text = Request.QueryString["CarID"];
+        
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)

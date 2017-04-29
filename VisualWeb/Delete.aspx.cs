@@ -9,7 +9,7 @@ public partial class Delete : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        txtDelete.Text = Request.QueryString["CarID"];
     }
 
     protected void btnNo_Click(object sender, EventArgs e)
