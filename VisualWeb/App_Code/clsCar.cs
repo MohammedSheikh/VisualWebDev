@@ -117,7 +117,7 @@ public class clsCar
         }
     }
 
-    public string CarValid(string CarID,
+    public string CarValid(
                            string Manufacturer,
                            string Model,
                            string Colour,
@@ -158,5 +158,41 @@ public class clsCar
         {
             return " there were erros: " + message ;
         }  
+    }
+
+
+    //this find func is used to find record from db based on pk value entered and retrieve details of record
+    public Boolean Find(Int32 CarID)
+    {
+
+        clsDataConnection DB = new clsDataConnection();
+        DB.AddParameter("@CarID", CarID);
+        DB.Execute("sproc_tblCar_FindByCarID");
+
+        //if the record was found...
+        if (DB.Count == 1)
+        {
+            carID = Convert.ToInt32(DB.DataTable.Rows[0]["CarID"]);
+            manufacturer = Convert.ToString(DB.DataTable.Rows[0]["Manufacturer"]);
+            model = Convert.ToString(DB.DataTable.Rows[0]["Model"]);
+            colour = Convert.ToString(DB.DataTable.Rows[0]["Colour"]);
+            noOfDoors = Convert.ToInt32(DB.DataTable.Rows[0]["NoOfDoors"]);
+            registrationDate = Convert.ToDateTime(DB.DataTable.Rows[0]["RegistrationDate"]);
+
+            try
+            {
+                fourWheelDrive = Convert.ToBoolean(DB.DataTable.Rows[0]["FourWheelDrive"]);
+            }
+            catch
+            {
+                fourWheelDrive = true;
+            }
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }   
     }
 }

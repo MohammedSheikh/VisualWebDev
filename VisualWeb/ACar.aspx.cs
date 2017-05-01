@@ -7,10 +7,39 @@ using System.Web.UI.WebControls;
 
 public partial class ACar : System.Web.UI.Page
 {
+    //var with global scope
+    Int32 CarID;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        //read the data from the query string that we passed from Default.aspx and copy to CarID txtbox
-        txtCarID.Text = Request.QueryString["CarID"];
+        
+         CarID = Convert.ToInt32( Request.QueryString["CarID"]);
+
+        //txtCarID.Text = Convert.ToString(Request.QueryString["CarID"]);
+
+        if (CarID != -1)
+        {
+            if (IsPostBack != true)
+            {
+                DisplayCars(CarID);
+            }
+            
+        }
+
+
+        ////read the data from the query string 
+        //Int32 CarID = Convert.ToInt32( Request.QueryString["CarID"]);
+
+
+        ////if we are not adding a new record...
+        //if (CarID != -1)
+        //{
+        //    if (IsPostBack != true)
+        //    {
+        //        //display existing data for that pk value
+        //        DisplayCars(CarID);
+        //    }          
+        //}
         
     }
 
@@ -25,7 +54,7 @@ public partial class ACar : System.Web.UI.Page
         clsCar  Car1 = new clsCar();
         string ErrorMsg;
         //we are calling the 'Valid' method here
-        ErrorMsg =  Car1.CarValid(txtCarID.Text,
+        ErrorMsg =  Car1.CarValid(
                                   txtManufacturer.Text,
                                   txtModel.Text,
                                   txtColor.Text,
@@ -38,7 +67,7 @@ public partial class ACar : System.Web.UI.Page
             //do something with the new record - either insert or update depending on pk value
 
             //if carID is '-1' , meaning a new value, then call the insert method
-            if (txtCarID.Text == "-1")
+            if (CarID == -1)
             {
                 //copy data from the text boxes to the vars
                 Car1.Manufacturer = txtManufacturer.Text;
@@ -53,7 +82,7 @@ public partial class ACar : System.Web.UI.Page
             else
             {
                 //copy data from txt boxes to vars
-                Car1.CarID = Convert.ToInt32(txtCarID.Text);
+                Car1.CarID = Convert.ToInt32(CarID);
                 Car1.Manufacturer = txtManufacturer.Text;
                 Car1.Model = txtModel.Text;
                 Car1.Colour = txtColor.Text;
@@ -71,5 +100,20 @@ public partial class ACar : System.Web.UI.Page
         {
             lblError.Text = ErrorMsg;
         }
+    }
+
+    //func to display car record on form
+    void DisplayCars(Int32 CarID)
+    {
+        clsCar Car = new clsCar();
+        //find car we want to display
+        Car.Find(CarID);
+        //copy over the data to the text boxes
+        txtManufacturer.Text = Car.Manufacturer;
+        txtModel.Text = Car.Model;
+        txtColor.Text = Car.Colour;
+        ddlNoOfDoors.SelectedValue = Convert.ToString(Car.NoOfDoors);
+        txtRegistrationDate.Text = Car.RegistrationDate.ToString("dd/MM/yyyy");
+        chkFourWheels.Checked = Car.FourWheelDrive;
     }
 }

@@ -2,7 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <br />
-    <asp:TextBox ID="txtDelete" runat="server"></asp:TextBox>
     <br />
     <br />
     <asp:Label ID="lblMessage" runat="server" Text="Are you sure you want to delete this car??"></asp:Label>

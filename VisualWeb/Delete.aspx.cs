@@ -7,9 +7,11 @@ using System.Web.UI.WebControls;
 
 public partial class Delete : System.Web.UI.Page
 {
+    Int32 CarID;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        txtDelete.Text = Request.QueryString["CarID"];
+        CarID = Convert.ToInt32 ( Request.QueryString["CarID"]);
     }
 
     protected void btnNo_Click(object sender, EventArgs e)
@@ -24,8 +26,8 @@ public partial class Delete : System.Web.UI.Page
         clsCarCollection CarCollection = new clsCarCollection();
         //Var to store outcome of process (did it work or not)
         Boolean Success;
-        //pass data from text box to var
-        Int32 CarID = Convert.ToInt32(txtDelete.Text);
+        
+        
         //copy outcome of delete methid (true/false) to this 'Success' var
         Success = CarCollection.Delete(CarID);
         // if value of Delete functio is true..
