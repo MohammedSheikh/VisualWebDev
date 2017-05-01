@@ -13,7 +13,7 @@ public partial class _Default : System.Web.UI.Page
         if (IsPostBack == false)
         {
             //display the car list 
-            DisplayCars();
+            DisplayCars("");
         }
         
     }
@@ -45,17 +45,19 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnDisplay_Click(object sender, EventArgs e)
     {
-        
+        DisplayCars("");
     }
 
-    Int32 DisplayCars()
+    Int32 DisplayCars(string ColourFilter)
     {  
         Int32 CarID;
         string Manufacturer;
         string Colour;
         clsCarCollection Car1 = new clsCarCollection();
+        Car1.FilterByColour(ColourFilter);
         Int32 Index = 0;
         Int32 RecordCount = Car1.Count;
+        lstCars.Items.Clear();
         while (Index < RecordCount)
         {
             CarID = Car1.CarList[Index].CarID;
@@ -90,5 +92,10 @@ public partial class _Default : System.Web.UI.Page
             lblError.Text = "Please enter an item from list to edit it";
         }
        
+    }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        DisplayCars(txtColor.Text);
     }
 }

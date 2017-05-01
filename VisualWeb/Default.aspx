@@ -18,7 +18,7 @@
         <asp:TextBox ID="txtColor" runat="server"></asp:TextBox>
     </p>
     <p>
-        <asp:Button ID="btnApply" runat="server" Text="Apply" />
+        <asp:Button ID="btnApply" runat="server" Text="Apply" OnClick="btnApply_Click" />
 &nbsp;&nbsp;
         <asp:Button ID="btnDisplay" runat="server" Text="Display All" OnClick="btnDisplay_Click" />
     </p>
